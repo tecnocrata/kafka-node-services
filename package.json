@@ -1,0 +1,27 @@
+{
+  "name": "kafka-node-services",
+  "version": "1.0.0",
+  "description": "A simple example of Kafka producer and consumer using Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tecnocrata/kafka-node-services.git"
+  },
+  "keywords": [
+    "kafka",
+    "node",
+    "example"
+  ],
+  "author": "Enrique Ortuno enrique@ortuno.net",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tecnocrata/kafka-node-services/issues"
+  },
+  "homepage": "https://github.com/tecnocrata/kafka-node-services",
+  "dependencies": {
+    "kafkajs": "^1.16.0"
+  }
+}
