@@ -21,15 +21,21 @@ services:
       - "9092:9092"
 
   service_a:
-    build: ./service_a
+    build:
+      context: .
+      dockerfile: producer.dockerfile
     depends_on:
       - kafka
     environment:
       - KAFKA_BROKER=localhost:9092
+    command: bash -c "./wait-for-it.sh --timeout=60 zookeeper:2181 && ./wait-for-it.sh --timeout=60 kafka:9092"
 
   service_b:
-    build: ./service_b
+    build:
+      context: .
+      dockerfile: consumer.dockerfile
     depends_on:
       - kafka
     environment:
       - KAFKA_BROKER=localhost:9092
+    command: bash -c "./wait-for-it.sh --timeout=60 zookeeper:2181 && ./wait-for-it.sh --timeout=60 kafka:9092"

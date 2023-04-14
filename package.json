@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/tecnocrata/kafka-node-services",
   "dependencies": {
-    "kafkajs": "^1.16.0"
+    "kafkajs": "^1.16.0",
+    "wait-on": "^7.0.1"
   }
 }
