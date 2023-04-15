@@ -21,21 +21,17 @@ services:
       - "9092:9092"
 
   service_a:
-    build:
-      context: .
-      dockerfile: producer.dockerfile
+    image: kafka_producer:latest
     depends_on:
       - kafka
     environment:
-      - KAFKA_BROKER=localhost:9092
-    command: bash -c "./wait-for-it.sh --timeout=60 zookeeper:2181 && ./wait-for-it.sh --timeout=60 kafka:9092"
+      - KAFKA_BROKER=kafka:9092
+    command: bash -c "./wait-for-it.sh --timeout=160 zookeeper:2181 && ./wait-for-it.sh --timeout=160 kafka:9092 && node producer.js"
 
   service_b:
-    build:
-      context: .
-      dockerfile: consumer.dockerfile
+    image: kafka_consumer:latest
     depends_on:
       - kafka
     environment:
-      - KAFKA_BROKER=localhost:9092
-    command: bash -c "./wait-for-it.sh --timeout=60 zookeeper:2181 && ./wait-for-it.sh --timeout=60 kafka:9092"
+      - KAFKA_BROKER=kafka:9092
+    command: bash -c "./wait-for-it.sh --timeout=160 zookeeper:2181 && ./wait-for-it.sh --timeout=160 kafka:9092 && node consumer.js"
